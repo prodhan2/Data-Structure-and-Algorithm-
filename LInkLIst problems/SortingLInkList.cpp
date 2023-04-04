@@ -27,18 +27,41 @@ void insert_node(node *head) {
         curr = curr->next;
     }
 }
+//use for loop
+//void sort_linked_list(node *head) {
+//    node *curr, *next1;
+//    int tmp;
+//    for (curr = head->next; curr != NULL; curr = curr->next) {
+//        for (next1 = curr->next; next1 != NULL; next1 = next1->next) {
+//            if (curr->data > next1->data) {
+//                tmp = curr->data;
+//                curr->data = next1->data;
+//                next1->data = tmp;
+//            }
+//        }
+//    }
+//}
 
-void sort_linked_list(node *head) {
-    node *curr, *next1;
-    int tmp;
-    for (curr = head->next; curr != NULL; curr = curr->next) {
-        for (next1 = curr->next; next1 != NULL; next1 = next1->next) {
-            if (curr->data > next1->data) {
-                tmp = curr->data;
-                curr->data = next1->data;
-                next1->data = tmp;
+
+void sort_linked_list(node *head)
+{
+    node *current = head->next ,*next1;
+    while(current !=NULL)
+    {
+        next1 = current->next;
+        while(next1 != NULL)
+        {
+            if(current->data > next1->data)
+            {
+                int tmp = current->data;
+                 current->data = next1->data;
+                 next1->data = tmp;
+
             }
+            next1 = next1->next;
         }
+       current = current->next;
+
     }
 }
 
