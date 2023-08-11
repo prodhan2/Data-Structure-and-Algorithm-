@@ -1,54 +1,72 @@
-
 #include<bits/stdc++.h>
 using namespace std;
-int hashFunction(int n,int size)
+int hashFunction(int X,int size)
 {
-    return n%size;
+    return X%size;
 }
-void quardatricHashTable(int key,int size,vector<int> &HashTable)
-{int indx= hashFunction(key,size);
-   int i =0;
-   while(HashTable[indx] != -1)
-         {
-           indx = (indx +(i*i))  % size ;
-            i++;
-         }
-     HashTable[indx] = key;
+void quardatricHashTable(int X,int size,vector<int>&HasTable)
+{
+
+    int i =0;
+    int index = hashFunction(X,size);
+    while(HasTable[index] !=-1)
+    {
+        index = (index +i*i)%size;
+        i++;
+    }
+    HasTable[index] = X;
 }
+int quardatricHashTableSearch(int m,int size,vector<int>&HasTable)
+{
 
+    int i =0;
+    int index = hashFunction(m,size);
+    while(HasTable[index] !=-1)
+    {
+       if(HasTable[index]== m)
+       {
+           return index ;
+       }
+        index = (index +i*i)%size;
+        i++;
+    }
+    return -1;
 
-
-int quardatricHashTableSearch(int key,int size,vector<int> &HashTable)
-{int indx= hashFunction(key,size);
-   int i =0;
-   while(HashTable[indx] != -1)
-         {
-             if(HashTable[indx] == key)
-             {
-                 return indx ;
-             }
-           indx = (indx +(i*i))  % size ;
-            i++;
-         }
-     return -1;
 }
 int main()
 {
-    vector<int>data{54,26,93,17,77,31,44,55,20};
-    int size = 11;
-    vector<int>quardatric(size,-1);
-    for(int X: data)
+    vector<int>data{14, 12, 18, 13, 2, 3, 23, 5, 15};
+    int size =10;
+    vector<int>quadraticProbing(size ,-1);
+    for(int X : data)
     {
-        quardatricHashTable(X,size,quardatric);
+        quardatricHashTable(X,size,quadraticProbing);
     }
-int SearchIteam = 44;
-int index = quardatricHashTableSearch(SearchIteam,size,quardatric);
-   if(index != -1)
+   int out =  quardatricHashTableSearch(12,size,quadraticProbing);
+
+   for(int i =0; i<size;i++)
    {
-       cout<<"Yes we found it at index =    "<<index<<endl;
+     cout << i << " |     ";
    }
-   else{
-    cout<<"sorry we are not found index"<<endl;
-   }
-   return 0;
+  cout <<endl;
+    for (int key : quadraticProbing) {
+        if (key == -1) {
+            cout << " - |    ";
+        } else {
+            cout << key << " |    ";
+        }
+    }
+    cout << endl;
+
+
+
+    if(out != -1)
+   {
+        cout << "yes we find your value at index == "<< out<<endl;
+    }
+    else
+    {
+        cout << "NO we find your value at index == "<< out<<endl;
+    }
+
 }
