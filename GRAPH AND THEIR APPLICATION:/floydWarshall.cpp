@@ -1,61 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define INF  999
+void warshallShortest(int dist[4][4],int v)
+{
+  for (int k =0;k<v;k++)
+  {
+      for (int i =0;i<v;i++)
+    {
+        for  (int j =0;j<v;j++)
+        {
+          if(dist[i][k] + dist[k][j] < dist[i][j])
+          {
+              dist[i][j] = dist[i][k] + dist[k][j] ;
+          }
+        }
+    }
+  }
 
-#define INF 999999
+for(int i =0;i<v;i++)
+{
+    for(int j =0;j<v;j++)
+    {
+      if (dist[i][j] == INF)
+      {
+          cout<<"INF"<<" ";
+      }
+      else
+        {
+            cout<<dist[i][j]<<" ";
+        }
 
-void floydWarshall(int graph[4][4], int V) {
-    int dist[V][V];
 
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            dist[i][j] = graph[i][j];
+    }
+    cout<<endl;
+ }
+  }
+
+
+
+int main()
+{
+    int v,a[4][4];
+    cout<<" ENTE A Vertex ="<<endl;
+    cin>>v;
+    cout<<" Input matrix elements = "<<endl;
+    for  (int i =0;i<v;i++)
+    {
+        for  (int j =0;j<v;j++)
+        {
+            cin>>a[i][j];
         }
     }
 
-    for (int k = 0; k < V; k++) {
-        for (int i = 0; i < V; i++) {
-            for (int j = 0; j < V; j++) {
-                if (dist[i][k] + dist[k][j] < dist[i][j]) {
-                    dist[i][j] = dist[i][k] + dist[k][j];
-                }
-            }
-        }
-    }
 
-    cout << "Shortest distances between all pairs of vertices:" << endl;
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            if (dist[i][j] == INF)
-                cout << "INF ";
-            else
-                cout << dist[i][j] << " ";
-        }
-        cout << endl;
-    }
+    warshallShortest(a,v);
 }
 
-int main() {
-    int V;
-    cout << "Enter the number of vertices: ";
-    cin >> V;
+/*v = 4
 
-    int graph[4][4];
-    cout << "Enter the graph matrix:" << endl;
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            cin >> graph[i][j];
-        }
-    }
-
-    floydWarshall(graph, V);
-
-    return 0;
-}
-
-
-
-v = 4;
-0 5 999999999 10
-999999999 0 3 999999999
-999999999 999999999 0 1
-999999999 999999999 999999999 0
+0 5 999 10
+999 0 3 999
+999 999 0 1
+999 999 999 0
+*/
