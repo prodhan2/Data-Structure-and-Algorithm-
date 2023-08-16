@@ -3,7 +3,7 @@ using namespace std;
 
 #define INF 999999
 
-void floydWarshall(int graph[][4], int V) {
+void floydWarshall(int graph[4][4], int V) {
     int dist[V][V];
 
     for (int i = 0; i < V; i++) {
@@ -39,7 +39,7 @@ int main() {
     cout << "Enter the number of vertices: ";
     cin >> V;
 
-    int graph[V][V];
+    int graph[4][4];
     cout << "Enter the graph matrix:" << endl;
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
