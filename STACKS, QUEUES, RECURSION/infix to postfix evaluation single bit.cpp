@@ -22,7 +22,7 @@ string infixToPostfix(string infix) {
                 postfix += st.top();
                 st.pop();
             }
-            st.pop();
+            st.pop();   // "("" pop korbe
         } else {
             while (!st.empty() && prec(st.top()) >= prec(c)) {
                 postfix += st.top();
